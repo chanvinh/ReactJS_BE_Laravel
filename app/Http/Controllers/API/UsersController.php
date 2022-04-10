@@ -34,7 +34,13 @@ class UsersController extends Controller
     public function login(Request $request)
     {
         $users = User::where('email', $request->email)->where('password', $request->password)->first();
-        return $users;
+        if ($users != null) {
+            return $users;
+        }
+        return response()->json([
+            'status' => 202,
+            'message' => 'Add Success',
+        ]);
     }
 
     public function loginAdmin(Request $request)

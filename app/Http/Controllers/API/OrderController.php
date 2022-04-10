@@ -61,4 +61,10 @@ class OrderController extends Controller
     {
         return Orders::where("id", "like", "%$key%")->get();
     }
+
+    public function all()
+    {
+        $cartmedicines = Orders::join("users", 'users.id', '=', 'orders.user_id')->get();
+        return $cartmedicines;
+    }
 }
